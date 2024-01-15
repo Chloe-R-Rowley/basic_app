@@ -11,4 +11,4 @@ class LevelSerializer(serializers.ModelSerializer):
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
-        fields = ['id', 'level', 'lesson_number', 'lesson_name', 'french_phrase', 'translation', ...]
+        fields = ['id', 'level', 'lesson_number', 'lesson_name', 'french_phrase', 'translation']
