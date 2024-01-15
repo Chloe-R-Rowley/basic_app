@@ -19,13 +19,10 @@ class RegisterView(APIView):
         if serializer.is_valid():
             user = serializer.save()
 
-            # Create UserProfile associated with the user
             UserProfile.objects.create(user=user, mobile_number=request.data['mobile_number'])
 
-            # Serialize user details to send in the response
             user_data = UserProfileSerializer(user.userprofile).data
 
-            # Include additional user details
             user_data.update({
                 "username": user.username,
                 "email": user.email,
@@ -52,10 +49,8 @@ class LoginView(APIView):
         if user:
             login(request, user)
 
-            # Serialize user details to send in the response
             user_data = UserProfileSerializer(user.userprofile).data
 
-            # Include additional user details
             user_data.update({
                 "id": user.id,
                 "username": user.username,

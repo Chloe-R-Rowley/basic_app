@@ -59,7 +59,7 @@ class CheckAndReward(APIView):
         total_correct_answers = self.compare_and_reward(user_answers, test)
 
         # Update user's coins based on the number of correct answers
-        coins_received = total_correct_answers  # You can adjust this logic based on your requirements
+        coins_received = total_correct_answers
 
         return Response({"total_correct_answers": total_correct_answers, "coins_received": coins_received})
 
@@ -85,7 +85,6 @@ class CheckAndReward(APIView):
                             question = MCQQuestion.objects.get(pk=question_id, test=test)
                             correct_answer = question.correct_answer
                         else:
-                            # Handle other question types as needed
                             continue
 
                         if correct_answer and user_answer == correct_answer:
@@ -95,7 +94,7 @@ class CheckAndReward(APIView):
                             UserAnswer.objects.create(
                                 test=test,
                                 question_type=question_type,
-                                question=question,  # Use the correct field name
+                                question=question,
                                 user=self.request.user,
                                 user_answer=user_answer
                             )

@@ -21,8 +21,6 @@ class Progress(models.Model):
     test_scores = models.PositiveIntegerField(default=0)
     coins_received = models.PositiveIntegerField(default=0)
     badges_received = models.ManyToManyField(Badge, related_name='received_badges', blank=True)
-    
-    # Add other progress fields such as tests, scores, coins, badges, etc.
 
     def __str__(self):
         return f"{self.user.username}'s Progress"
